@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title> Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../images/favicon.png" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Inclure jQuery et DataTables CSS/JS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="icon-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="ti-info-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="ti-settings mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Parameter</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                     message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="ti-user mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+           <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="ti-email mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Message</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="ti-info-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="ti-settings mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Parameter</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                     message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="ti-user mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="../images/faces/face28.jpg" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              <i class="icon-ellipsis"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="right-sidebar" class="settings-panel">
+        <i class="settings-close ti-close"></i>
+        <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="setting-content">
+          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+        
+        
+            <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary mr-2"></i>
+                <span>Feb 11 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+              <p class="text-gray mb-0">The total number of sessions</p>
+            </div>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary mr-2"></i>
+                <span>Feb 7 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+              <p class="text-gray mb-0 ">Call Sarah Graves</p>
+            </div>
+          </div>
+          <!-- To do section tab ends -->
+          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+            <div class="d-flex align-items-center justify-content-between border-bottom">
+              <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
+            </div>
+            <ul class="chat-list">
+              <li class="list active">
+                <div class="profile"><img src="../images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Mytek</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">19 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="../images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <div class="wrapper d-flex">
+                    <p>Catherine</p>
+                  </div>
+                  <p>Away</p>
+                </div>
+                <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                <small class="text-muted my-auto">23 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="../images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Daniel Russell</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">14 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="../images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <p>James Richardson</p>
+                  <p>Away</p>
+                </div>
+                <small class="text-muted my-auto">2 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="../images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Madeline Kennedy</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">5 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="../images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Sarah Graves</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">47 min</small>
+              </li>
+            </ul>
+          </div>
+          <!-- chat tab ends -->
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <!-- Dashboard -->
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="icon-home menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+      
+          <!-- Brand -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#brands" aria-expanded="false" aria-controls="brands">
+              <i class="icon-tag menu-icon"></i>
+              <span class="menu-title">Brand</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="brands">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/brands/add-brand.html">Ajouter une Brand</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/brands/list-brands.html">Listes des Brands</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/brands/statistics.html">Statistiques</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/brands/sales.html">Vente Moyenne/jour</a></li>
+              </ul>
+            </div>
+          </li>
+      
+          <!-- Produit -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#products" aria-expanded="false" aria-controls="products">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">Produit</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="products">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/products/add-product.html">Ajouter un Produit</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/products/list-products.html">Listes des Produits</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/products/statistics.html">Statistiques</a></li>
+              </ul>
+            </div>
+          </li>
+      
+          <!-- Revendeur -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#retailers" aria-expanded="false" aria-controls="retailers">
+              <i class="icon-store menu-icon"></i>
+              <span class="menu-title">Revendeur</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="retailers">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/retailers/add-retailer.html">Ajouter un Revendeur</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/retailers/list-retailers.html">Listes des Revendeurs</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/retailers/statistics.html">Statistiques</a></li>
+              </ul>
+            </div>
+          </li>
+      
+          <!-- Team -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#teams" aria-expanded="false" aria-controls="teams">
+              <i class="icon-users menu-icon"></i>
+              <span class="menu-title">Team</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="teams">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/teams/add-team.html">Ajouter une Équipe</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/teams/list-teams.html">Listes des Équipes</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/teams/statistics.html">Statistiques</a></li>
+              </ul>
+            </div>
+          </li>
+      
+          <!-- Rédirection -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#redirects" aria-expanded="false" aria-controls="redirects">
+              <i class="icon-arrow-right menu-icon"></i>
+              <span class="menu-title">Rédirection</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="redirects">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/redirects/add-redirect.html">Ajouter Redirection</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/redirects/list-redirects.html">Liste de Redirections</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/redirects/heatmap.html">Carte Chaleure</a></li>
+              </ul>
+            </div>
+          </li>
+      
+          <!-- Paramètre -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings">
+              <i class="icon-settings menu-icon"></i>
+              <span class="menu-title">Paramètre</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="settings">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/settings/add-parameter.html">Ajouter un Paramètre</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/settings/list-parameters.html">Liste des Paramètres</a></li>
+                <li class="nav-item"><a class="nav-link" href="pages/settings/add-commercial.html">Ajouter Commercial</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Bienvenu Selim Idriss</h3>
+                 </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                     <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                      <a class="dropdown-item" href="#">January - March</a>
+                      <a class="dropdown-item" href="#">March - June</a>
+                      <a class="dropdown-item" href="#">June - August</a>
+                      <a class="dropdown-item" href="#">August - November</a>
+                    </div>
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+          <div class="row"> 
+            <div class="col-md-12 stretch-card grid-margin">
+              <div class="card">
+                <div class="card-body">
+                 
+                    <h1>Ajouter Redirection</h1>
+                    <form id="redirectionForm">
+                        <div class="form-group">
+                            <label for="brand">Marque:</label>
+                            <select id="brand" class="form-control" required>
+                                <option value="">Choisir une marque</option>
+                                <option value="Marque A">Marque A</option>
+                                <option value="Marque B">Marque B</option>
+                                <option value="Marque C">Marque C</option>
+                            </select>
+                            <span id="brandError" class="error"></span>
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="skus">Produits (SKU):</label>
+                            <div class="input-group">
+                                <input type="text" id="sku" class="form-control" placeholder="SKU" required>
+                                <div class="input-group-append">
+                                    <button type="button" id="addSkuButton" class="btn btn-outline-secondary">Ajouter SKU</button>
+                                </div>
+                            </div>
+                            <div id="skuList" class="mt-2"></div>
+                        </div>
+                
+                        <div>
+                            <h2>Détails du Client</h2>
+                            <div class="form-group">
+                                <label for="clientNom">Nom:</label>
+                                <input type="text" id="clientNom" class="form-control" required>
+                                <span id="clientNomError" class="error"></span>
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="clientPrenom">Prénom:</label>
+                                <input type="text" id="clientPrenom" class="form-control" required>
+                                <span id="clientPrenomError" class="error"></span>
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="clientEmail">Email:</label>
+                                <input type="email" id="clientEmail" class="form-control" required>
+                                <span id="clientEmailError" class="error"></span>
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="clientPhone">Téléphone:</label>
+                                <input type="text" id="clientPhone" class="form-control" required>
+                                <span id="clientPhoneError" class="error"></span>
+                            </div>
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="resellerName">Nom du Revendeur:</label>
+                            <select id="resellerName" class="form-control" required>
+                                <option value="">Choisir un revendeur</option>
+                                <option value="Revendeur A">Revendeur A</option>
+                                <option value="Revendeur B">Revendeur B</option>
+                                <option value="Revendeur C">Revendeur C</option>
+                            </select>
+                            <span id="resellerNameError" class="error"></span>
+                        </div>
+                
+                        <button type="submit" class="btn btn-primary">Ajouter la Redirection</button>
+                    </form>
+                
+                    <button id="previewButton" class="btn btn-secondary mt-3">Aperçu de la Commande</button>
+                    <div id="preview" class="preview" style="display:none;"></div>
+                 
+                <!-- Lien vers jQuery et Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                
+                <script>
+                    const form = document.getElementById('redirectionForm');
+                    const previewButton = document.getElementById('previewButton');
+                    const previewDiv = document.getElementById('preview');
+                    const skuInput = document.getElementById('sku');
+                    const skuList = document.getElementById('skuList');
+                    const addSkuButton = document.getElementById('addSkuButton');
+                
+                    const skus = [];
+                
+                    addSkuButton.addEventListener('click', () => {
+                        const skuValue = skuInput.value.trim();
+                        if (skuValue) {
+                            skus.push(skuValue);
+                            updateSkuList();
+                            skuInput.value = '';
+                        } else {
+                            alert("Veuillez entrer un SKU valide.");
+                        }
+                    });
+                
+                    const updateSkuList = () => {
+                        skuList.innerHTML = '';
+                        skus.forEach(sku => {
+                            const skuItem = document.createElement('div');
+                            skuItem.textContent = sku;
+                            skuList.appendChild(skuItem);
+                        });
+                    };
+                
+                    form.addEventListener('submit', (event) => {
+                        event.preventDefault();
+                        const brand = document.getElementById('brand').value;
+                        const clientNom = document.getElementById('clientNom').value;
+                        const clientPrenom = document.getElementById('clientPrenom').value;
+                        const clientEmail = document.getElementById('clientEmail').value;
+                        const clientPhone = document.getElementById('clientPhone').value;
+                        const resellerName = document.getElementById('resellerName').value;
+                
+                        // Reset errors
+                        document.querySelectorAll('.error').forEach(e => e.textContent = '');
+                
+                        let hasError = false;
+                
+                        if (!brand) {
+                            document.getElementById('brandError').textContent = "La marque est requise";
+                            hasError = true;
+                        }
+                
+                        if (!clientNom) {
+                            document.getElementById('clientNomError').textContent = "Le nom est requis";
+                            hasError = true;
+                        }
+                
+                        if (!clientPrenom) {
+                            document.getElementById('clientPrenomError').textContent = "Le prénom est requis";
+                            hasError = true;
+                        }
+                
+                        if (!clientEmail) {
+                            document.getElementById('clientEmailError').textContent = "L'email est requis";
+                            hasError = true;
+                        }
+                
+                        if (!clientPhone) {
+                            document.getElementById('clientPhoneError').textContent = "Le téléphone est requis";
+                            hasError = true;
+                        }
+                
+                        if (!resellerName) {
+                            document.getElementById('resellerNameError').textContent = "Le nom du revendeur est requis";
+                            hasError = true;
+                        }
+                
+                        if (hasError) {
+                            alert("Veuillez remplir tous les champs obligatoires.");
+                            return; // Ne pas soumettre le formulaire si des erreurs sont présentes
+                        }
+                
+                        // Afficher un message de succès et réinitialiser le formulaire
+                        alert('Les informations ont été envoyées avec succès!');
+                        form.reset();
+                        skuList.innerHTML = '';
+                        skus.length = 0;
+                
+                        // Masquer l'aperçu après la soumission
+                        previewDiv.style.display = 'none';
+                    });
+                
+                    previewButton.addEventListener('click', () => {
+                        const brand = document.getElementById('brand').value;
+                        const resellerName = document.getElementById('resellerName').value;
+                        const clientNom = document.getElementById('clientNom').value;
+                        const clientPrenom = document.getElementById('clientPrenom').value;
+                
+                        if (brand && resellerName && clientNom && clientPrenom) {
+                            previewDiv.innerHTML = `
+                                <h3>Résumé de la Commande</h3>
+                                <p><strong>Marque:</strong> ${brand}</p>
+                                <p><strong>Produits:</strong> ${skus.join(', ')}</p>
+                                <p><strong>Client:</strong> ${clientNom} ${clientPrenom}</p>
+                                <p><strong>Revendeur:</strong> ${resellerName}</p>
+                            `;
+                            previewDiv.style.display = 'block';
+                        } else {
+                            previewDiv.style.display = 'none';
+                            alert("Veuillez remplir tous les champs requis avant de voir l'aperçu.");
+                        }
+                    });
+                </script>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Listes des Redirections</p>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="example" class="display expandable-table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Quote#</th>
+                                                <th>Nom de Revendeur</th>
+                                                <th>Nom de client</th>
+                                                <th>Commander</th>
+                                                <th>Status</th>
+                                                <th>Date Ajouter</th>
+                                                <th></th><th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Quote#</td>
+                                                <td>Mytek</td>
+                                                <td>Foalan ben Folan</td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Commander
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" href="#">SKU: 12345 - Produit A - Prix Unitaire: 10.00 TND</a>
+                                                            <a class="dropdown-item" href="#">SKU: 67890 - Produit B - Prix Unitaire: 20.00 TND</a>
+                                                            <a class="dropdown-item" href="#">SKU: 54321 - Produit C - Prix Unitaire: 15.00 TND</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><a href="tel:+21652369874">+216 52369874</a></td>
+                                                <td>
+                                                    <button class="btn btn-warning btn-sm">Modifier</button>
+                                                    <button class="btn btn-danger btn-sm">Supprimer</button>
+                                                    <button class="btn btn-success btn-sm">Désactiver</button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-secondary btn-sm">Non</button>
+                                                    <button type="button" class="btn btn-success btn-sm">Actif</button>
+                                                </td>
+                                                <td>24 OCT 2024</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Assurez-vous d'inclure les fichiers Bootstrap CSS et JS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+
+
+         
+
+           
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>   
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!--
+  
+  <script src="../vendors/chart.js/Chart.min.js"></script>
+  <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="../js/dataTables.select.min.js"></script>-->
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="../js/off-canvas.js"></script>
+  <script src="../js/hoverable-collapse.js"></script>
+  <script src="../js/template.js"></script>
+  <script src="../js/settings.js"></script>
+  <script src="../js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/Chart.roundedBarCharts.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
+

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr-TN">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Liste de redirection</title>
+  @include('themes.style')
+ </head>
+
+<body>
+<div class="container-scroller">
+    <!-- Navbar and Sidebar -->
+    @include('themes.header')
+    @include('themes.sideleft')
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Listes des Redirections</h5>
+                  @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+                  <div class="table-responsive">
+                        <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Revendeur</th>
+                            <th>Client</th>
+                            <th>Téléphone</th>
+                            <th>Commander</th>
+                            <th>Status</th>
+                            <th>Change Status </th>
+                            <th>Change Revendeur </th>
+                            <th>Date de Redirection</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+    @if($redirections && $redirections->isNotEmpty())
+        @foreach($redirections as $redirection)
+            <tr>
+                <td>#{{ $redirection->ref_redirection }}</td>
+                <td>{{ $redirection->revendeur_nom }}</td>
+                <td>{{ $redirection->client_nom }} {{ $redirection->client_prenom }}</td>
+                <td><a href="tel:+216{{ $redirection->client_phone }}">{{ $redirection->client_phone }}</a></td>
+                <td>
+                    <!-- Toggle Button pour afficher les produits associés -->
+                    <button class="btn btn-info btn-sm toggle-button" id="toggle-{{ $redirection->ref_redirection }}" 
+                            data-toggle="collapse" 
+                            data-target="#collapse-{{ $redirection->ref_redirection }}" 
+                            aria-expanded="false" 
+                            aria-controls="collapse-{{ $redirection->ref_redirection }}">
+                        <i class="fas fa-arrow-down"></i> 
+                    </button>
+                    <div id="collapse-{{ $redirection->ref_redirection }}" class="collapse">
+                        <div clsass="card-body">
+                            @if(!empty($redirection->produits_avec_prix))
+                                <ul class="list-unstyled">
+                                    @foreach(explode(',', $redirection->produits_avec_prix) as $produit)
+                                        <li>{{ $produit }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p>Aucun produit associé</p>
+                            @endif
+                        </div>
+                    </div>
+                </td>
+                <td>
+    @if($redirection->etat_red == 1)
+        <i class="fas fa-paper-plane text-warning" title="Envoyer au Revendeur" style="font-size: 20px;"></i>
+    @elseif($redirection->etat_red == 0)
+        <i class="fas fa-check-circle text-primary" title="Validé" style="font-size: 20px;"></i>
+    @else
+        <i class="fas fa-times-circle text-danger" title="Annulé" style="font-size: 20px;"></i>
+    @endif
+</td>
+
+                <td>
+                    <!-- Bouton pour ouvrir la modale -->
+                    <button class="btn btn-warning btn-sm" data-toggle="modal" 
+                            data-target="#changeEtatModal-{{ $redirection->ref_redirection }}" 
+                            title="Changer l'état">
+                        <i class="fas fa-exchange-alt"></i> 
+                    </button>
+                    
+                    <!-- Autres actions -->
+        
+
+                </td>
+                <td>
+            
+                
+                <button class="btn btn-outline-light btn-fw" data-toggle="modal" 
+                                                data-target="#changeRevendeurModal-{{ $redirection->ref_redirection }}" 
+                                                title="Changer Revendeur">
+                                                <i class="ti-control-shuffle
+                                                "></i>                                        </button>
+
+            </td>
+                <td>{{ \Carbon\Carbon::parse($redirection->date_premiere_redirection)->locale('fr_FR')->isoFormat('dd DD YYYY') }}</td>
+            </tr>
+<!-- model pour changer Revendeur -->
+ 
+<div class="modal fade" id="changeRevendeurModal-{{ $redirection->ref_redirection }}" tabindex="-1" role="dialog" aria-labelledby="changeRevendeurModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="changeRevendeurModalLabel">Changer le revendeur pour cette redirection</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="revendeur">Sélectionnez un nouveau revendeur :</label>
+                                                        <select name="revendeur_id" id="revendeur" class="form-control">
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                    <button type="submit" class="btn btn-primary">Valider</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+<!-- -->
+            <!-- Modale pour changer l'état -->
+            <div class="modal fade" id="changeEtatModal-{{ $redirection->ref_redirection }}" tabindex="-1" role="dialog" aria-labelledby="changeEtatModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changeRevendeurModallabel">Changer l'état de la redirection</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>                        <form action="{{ route('redirections.updateEtat', $redirection->ref_redirection) }}" method="POST">
+
+                        <form action="{{ route('redirections.updateEtat', $redirection->ref_redirection) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="etat">Sélectionnez le nouvel état :</label>
+                                    <select name="etat_red" id="etat" class="form-control">
+                                        <option value="0" {{ $redirection->etat_red == 0 ? 'selected' : '' }}>Validé</option>
+                                        <option value="2" {{ $redirection->etat_red == 2 ? 'selected' : '' }}>Annulé</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Valider</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <tr>
+            <td colspan="9" class="text-center">Aucune redirection trouvée.</td>
+        </tr>
+    @endif
+</tbody>
+
+                      </table>
+                    </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+    </div>   
+</div>
+
+<!-- JS and Plugins -->
+ 
+@include('themes.js')
+
+<script>
+$(document).ready(function() {
+    // Filter function for table rows
+    $('#searchInput').on('keyup', function() {
+        var value = $(this).val().toLowerCase();
+        $('#example tbody tr').filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        });
+    });
+
+    
+});
+</script>
+<script>
+$(document).ready(function() {
+     
+    // Gestion du toggle de l'icône pour activer/désactiver l'affichage
+    $('.toggle-button').on('click', function() {
+        var targetId = $(this).data('target');
+        var icon = $(this).find('i');
+
+        if ($(targetId).hasClass('collapse')) {
+            $(targetId).collapse('show');
+            icon.removeClass('fa-arrow-down').addClass('fa-arrow-up');
+            $(this).prop('disabled', true); // Désactiver le bouton après le clic
+        } else {
+            $(document).ready(function() {
+    $('.collapse').collapse('hide'); // Ensure collapse is hidden initially
+});
+        }
+    });
+});
+</script>
+
+<!-- JS pour gestion de la modale -->
+<script>
+  $(document).ready(function() {
+    // Ouvrir la modale et pré-remplir les champs si nécessaire
+    $('#changeRevendeurModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var revendeurId = button.data('revendeur-id');
+    $('#revendeur').val(revendeurId); // Bind this to your select element
+});
+
+  });
+</script>
+ 
+  
+</body>
+</html>

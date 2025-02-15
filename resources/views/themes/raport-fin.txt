@@ -1,0 +1,125 @@
+<form method="GET" action="{{ route('report') }}">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label for="marque">Sélectionner la marque :</label>
+                                                <select name="marque" id="marque" class="form-control">
+                                                    <option value="">Toutes les marques</option>
+                                                    @foreach($marques as $marque)
+                                                        <option value="{{ $marque->id }}" {{ request('marque') == $marque->id ? 'selected' : '' }}>
+                                                            {{ $marque->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label for="year">Sélectionner l'année :</label>
+                                                <select name="year" id="year" class="form-control">
+                                                    <option value="">Toute l'année</option>
+                                                    @foreach(range(2020, 2025) as $year)
+                                                        <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
+                                                            {{ $year }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-3 align-self-end">
+                                                <button type="submit" class="btn btn-primary btn-block">Filtrer</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                     <div class="table-responsive mt-4">
+                                        <table id="dataTable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Marque</th>
+                                                    <th>Revendeur</th>
+                                                    <th>Produit SKU</th>
+                                                    <th>Produit Nom</th>
+                                                    <th>CA Marque</th>
+                                                    <th>Total Redirections Revendeur</th>
+                                                    <th>CA Produit</th>
+                                                    <th>Total Redirections Produit</th>
+                                                    <th>CA Revendeur par Marque</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $currentMarque = null;
+                                                @endphp
+
+                                                @foreach($reportData as $row)
+                                                    @if($currentMarque !== $row->marque)
+                                                        @php
+                                                            $currentMarque = $row->marque;
+                                                        @endphp
+                                                        <tr>
+                                                            <td colspan="9" class="text-center"><strong>{{ $currentMarque }}</strong></td>
+                                                        </tr>
+                                                    @endif
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>{{ $row->revendeur }}</td>
+                                                        <td>{{ $row->produit_sku }}</td>
+                                                        <td>{{ $row->produit_nom }}</td>
+                                                        <td>{{ number_format($row->total_ca_marque, 2) }} DT</td>
+                                                        <td>{{ $row->total_redirections_revendeur }}</td>
+                                                        <td>{{ number_format($row->total_ca_produit, 2) }} DT</td>
+                                                        <td>{{ $row->total_redirections_produit }}</td>
+                                                        <td>{{ number_format($row->ca_revendeur_par_marque, 2) }} DT</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                     <h6>Top 10 des Revendeurs</h6>
+                                    <div class="table-responsive">
+                                        <table id="revendeursTable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Revendeur</th>
+                                                    <th>CA Revendeur</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($revendeursRanking as $revendeur)
+                                                    <tr>
+                                                        <td>{{ $revendeur->revendeur }}</td>
+                                                        <td>{{ number_format($revendeur->ca_revendeur, 2) }} DT</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                     <h6>Top 10 des SKU</h6>
+                                    <div class="table-responsive">
+                                        <table id="skuTable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>SKU</th>
+                                                    <th>CA SKU</th>
+                                                    <th>Nombre de Produits Vendus</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($skuRanking as $sku)
+                                                    <tr>
+                                                        <td>{{ $sku->produit_sku }}</td>
+                                                        <td>{{ number_format($sku->ca_sku, 2) }} DT</td>
+                                                        <td>{{ $sku->nbr_ventes }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                     <div class="d-flex justify-content-between mt-3">
+                                        <button id="exportDataTable" class="btn btn-success">Exporter Tableau des Données en Excel</button>
+                                        <button id="exportRevendeursTable" class="btn btn-success">Exporter Top 10 des Revendeurs en Excel</button>
+                                        <button id="exportSkuTable" class="btn btn-success">Exporter Top 10 des SKU en Excel</button>
+                                    </div>
